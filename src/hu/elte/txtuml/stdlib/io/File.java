@@ -1,8 +1,9 @@
-package hu.elte.txtuml.stdlib.io;
+package filePath;
 
 import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import hu.elte.txtuml.api.model.Collection;
 import hu.elte.txtuml.api.model.external.ExternalClass;
@@ -13,35 +14,29 @@ public interface File extends ExternalClass{
      * This abstract pathname's normalized pathname string. A normalized
      * pathname string uses the default name-separator character and does not
      * contain any duplicate or redundant separators.
-     *
-     * @serial
-     */
-	public final String pathSeparator = java.io.File.pathSeparator;
+      */
+	public static final String pathSeparator = java.io.File.pathSeparator;
 	/**
      * The system-dependent default name-separator character.  This field is
      * initialized to contain the first character of the value of the system
      * property <code>file.separator</code>.  On UNIX systems the value of this
      * field is <code>'/'</code>; on Microsoft Windows systems it is <code>'\\'</code>.
-     *
-     * @see     java.lang.System#getProperty(java.lang.String)
      */
-	public final char pathSeparatorChar = java.io.File.pathSeparatorChar;
+	public static final char pathSeparatorChar = java.io.File.pathSeparatorChar;
 	/**
      * The system-dependent default name-separator character, represented as a
      * string for convenience.  This string contains a single character, namely
      * <code>{@link #separatorChar}</code>.
      */
-	public final String separator = java.io.File.separator;
+	public static final String separator = java.io.File.separator;
 	
 	/**
      * The system-dependent default name-separator character.  This field is
      * initialized to contain the first character of the value of the system
      * property <code>file.separator</code>.  On UNIX systems the value of this
      * field is <code>'/'</code>; on Microsoft Windows systems it is <code>'\\'</code>.
-     *
-     * @see     java.lang.System#getProperty(java.lang.String)
      */
-	public final char separatorChar = java.io.File.separatorChar;
+	public static final char separatorChar = java.io.File.separatorChar;
 	
 	/**
      * Tests whether the application can execute the file denoted by this
@@ -57,8 +52,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkExec(java.lang.String)}</code>
      *          method denies execute access to the file
-     *
-     * @since 1.6
      */
 	public boolean canExecute();
 	 /**
@@ -110,8 +103,6 @@ public interface File extends ExternalClass{
      *          lexicographically less than the argument, or a value greater
      *          than zero if this abstract pathname is lexicographically
      *          greater than the argument
-     *
-     * @since   1.2
      */
 	public int compareTo(File pathname);
 	
@@ -138,8 +129,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
-     *
-     * @since 1.2
      */
 	public boolean createNewFile() throws IOException;
     /**
@@ -176,7 +165,6 @@ public interface File extends ExternalClass{
      *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method does not allow a file to be created
      *
-     * @since 1.2
      * @see java.nio.file.Files#createTempDirectory(String,FileAttribute[])
      */
 	public static File createTempFile(String prefix, String suffix) throws IOException {
@@ -248,8 +236,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method does not allow a file to be created
-     *
-     * @since 1.2
      */
 	public static File createTempFile(String prefix, String suffix, File directory) throws IOException{
 		return new FileImplementation(java.io.File.createTempFile(prefix, suffix, FileImplementation.getOrigFile(directory)));
@@ -297,8 +283,6 @@ public interface File extends ExternalClass{
      *          delete access to the file
      *
      * @see #delete
-     *
-     * @since 1.2
      */
 	public void deleteOnExit();
 
@@ -316,7 +300,7 @@ public interface File extends ExternalClass{
      * @return  <code>true</code> if and only if the objects are the same;
      *          <code>false</code> otherwise
      */
-	public boolean equals(Object obj);
+	public boolean equals(Object File);
 	/**
      * Tests whether the file or directory denoted by this abstract pathname
      * exists.
@@ -339,8 +323,6 @@ public interface File extends ExternalClass{
      *
      * @throws  SecurityException
      *          If a required system property value cannot be accessed.
-     *
-     * @since 1.2
      */
 	public File getAbsoluteFile();
 	/**
@@ -367,6 +349,26 @@ public interface File extends ExternalClass{
      * @see     java.io.File#isAbsolute()
      */
 	public String getAbsolutePath();
+	/**
+     * Returns the canonical form of this abstract pathname.  Equivalent to
+     * <code>new&nbsp;File(this.{@link #getCanonicalPath})</code>.
+     *
+     * @return  The canonical pathname string denoting the same file or
+     *          directory as this abstract pathname
+     *
+     * @throws  IOException
+     *          If an I/O error occurs, which is possible because the
+     *          construction of the canonical pathname may require
+     *          filesystem queries
+     *
+     * @throws  SecurityException
+     *          If a required system property value cannot be accessed, or
+     *          if a security manager exists and its <code>{@link
+     *          java.lang.SecurityManager#checkRead}</code> method denies
+     *          read access to the file
+     *
+     * @see     Path#toRealPath
+     */
 	public File getCanonicalFile() throws IOException;
 	 /**
      * Returns the canonical pathname string of this abstract pathname.
@@ -403,7 +405,6 @@ public interface File extends ExternalClass{
      *          java.lang.SecurityManager#checkRead}</code> method denies
      *          read access to the file
      *
-     * @since   JDK1.1
      * @see     Path#toRealPath
      */
 	public String getCanonicalPath() throws IOException;
@@ -430,8 +431,6 @@ public interface File extends ExternalClass{
      *          {@link RuntimePermission}<tt>("getFileSystemAttributes")</tt>
      *          or its {@link SecurityManager#checkRead(String)} method denies
      *          read access to the file named by this abstract pathname
-     *
-     * @since  1.6
      */
 	public long getFreeSpace();
 	 /**
@@ -473,8 +472,6 @@ public interface File extends ExternalClass{
      * @return  The abstract pathname of the parent directory named by this
      *          abstract pathname, or <code>null</code> if this pathname
      *          does not name a parent
-     *
-     * @since 1.2
      */
 	public File getParentFile();
 	/**
@@ -484,7 +481,7 @@ public interface File extends ExternalClass{
      *
      * @return  The string form of this abstract pathname
      */
-	public File getPath();
+	public File getPath(String string);
 	/**
      * Returns the size of the partition <a href="#partName">named</a> by this
      * abstract pathname.
@@ -497,8 +494,6 @@ public interface File extends ExternalClass{
      *          {@link RuntimePermission}<tt>("getFileSystemAttributes")</tt>
      *          or its {@link SecurityManager#checkRead(String)} method denies
      *          read access to the file named by this abstract pathname
-     *
-     * @since  1.6
      */
 	public long getTotalSpace();
 	  /**
@@ -527,8 +522,6 @@ public interface File extends ExternalClass{
      *          {@link RuntimePermission}<tt>("getFileSystemAttributes")</tt>
      *          or its {@link SecurityManager#checkRead(String)} method denies
      *          read access to the file named by this abstract pathname
-     *
-     * @since  1.6
      */
 	public long getUsableSpace();
 	 /**
@@ -614,8 +607,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
      *          method denies read access to the file
-     *
-     * @since 1.2
      */
 	public boolean isHidden();
 	/**
@@ -662,10 +653,112 @@ public interface File extends ExternalClass{
      *          method denies read access to the file
      */
 	public long length();
-	public Collection<String> list(); //replace array String[]
-	public Collection<String> list(FilenameFilter filter);
+	/**
+     * Returns an array of strings naming the files and directories in the
+     * directory denoted by this abstract pathname.
+     *
+     * <p> If this abstract pathname does not denote a directory, then this
+     * method returns {@code null}.  Otherwise an array of strings is
+     * returned, one for each file or directory in the directory.  Names
+     * denoting the directory itself and the directory's parent directory are
+     * not included in the result.  Each string is a file name rather than a
+     * complete path.
+     *
+     * <p> There is no guarantee that the name strings in the resulting array
+     * will appear in any specific order; they are not, in particular,
+     * guaranteed to appear in alphabetical order.
+     *
+     * <p> Note that the {@link java.nio.file.Files} class defines the {@link
+     * java.nio.file.Files#newDirectoryStream(Path) newDirectoryStream} method to
+     * open a directory and iterate over the names of the files in the directory.
+     * This may use less resources when working with very large directories, and
+     * may be more responsive when working with remote directories.
+     *
+     * @return  An array of strings naming the files and directories in the
+     *          directory denoted by this abstract pathname.  The array will be
+     *          empty if the directory is empty.  Returns {@code null} if
+     *          this abstract pathname does not denote a directory, or if an
+     *          I/O error occurs.
+     *
+     * @throws  SecurityException
+     *          If a security manager exists and its {@link
+     *          SecurityManager#checkRead(String)} method denies read access to
+     *          the directory
+     */
+	public Collection<String> list(); 
 	
-	public Collection<File> listFiles(); //replace array File[]
+	 /**
+     * Returns an array of abstract pathnames denoting the files and
+     * directories in the directory denoted by this abstract pathname that
+     * satisfy the specified filter.  The behavior of this method is the same
+     * as that of the {@link #listFiles()} method, except that the pathnames in
+     * the returned array must satisfy the filter.  If the given {@code filter}
+     * is {@code null} then all pathnames are accepted.  Otherwise, a pathname
+     * satisfies the filter if and only if the value {@code true} results when
+     * the {@link FilenameFilter#accept
+     * FilenameFilter.accept(File,&nbsp;String)} method of the filter is
+     * invoked on this abstract pathname and the name of a file or directory in
+     * the directory that it denotes.
+     *
+     * @param  filter
+     *         A filename filter
+     *
+     * @return  An array of abstract pathnames denoting the files and
+     *          directories in the directory denoted by this abstract pathname.
+     *          The array will be empty if the directory is empty.  Returns
+     *          {@code null} if this abstract pathname does not denote a
+     *          directory, or if an I/O error occurs.
+     *
+     * @throws  SecurityException
+     *          If a security manager exists and its {@link
+     *          SecurityManager#checkRead(String)} method denies read access to
+     *          the directory
+     *
+     * @see java.nio.file.Files#newDirectoryStream(Path,String)
+     */
+	public Collection<String> list(FilenameFilter filter);
+	 /**
+     * List the available filesystem roots.
+     *
+     * <p> A particular Java platform may support zero or more
+     * hierarchically-organized file systems.  Each file system has a
+     * {@code root} directory from which all other files in that file system
+     * can be reached.  Windows platforms, for example, have a root directory
+     * for each active drive; UNIX platforms have a single root directory,
+     * namely {@code "/"}.  The set of available filesystem roots is affected
+     * by various system-level operations such as the insertion or ejection of
+     * removable media and the disconnecting or unmounting of physical or
+     * virtual disk drives.
+     *
+     * <p> This method returns an array of {@code File} objects that denote the
+     * root directories of the available filesystem roots.  It is guaranteed
+     * that the canonical pathname of any file physically present on the local
+     * machine will begin with one of the roots returned by this method.
+     *
+     * <p> The canonical pathname of a file that resides on some other machine
+     * and is accessed via a remote-filesystem protocol such as SMB or NFS may
+     * or may not begin with one of the roots returned by this method.  If the
+     * pathname of a remote file is syntactically indistinguishable from the
+     * pathname of a local file then it will begin with one of the roots
+     * returned by this method.  Thus, for example, {@code File} objects
+     * denoting the root directories of the mapped network drives of a Windows
+     * platform will be returned by this method, while {@code File} objects
+     * containing UNC pathnames will not be returned by this method.
+     *
+     * <p> Unlike most methods in this class, this method does not throw
+     * security exceptions.  If a security manager exists and its {@link
+     * SecurityManager#checkRead(String)} method denies read access to a
+     * particular root directory, then that directory will not appear in the
+     * result.
+     *
+     * @return  An array of {@code File} objects denoting the available
+     *          filesystem roots, or {@code null} if the set of roots could not
+     *          be determined.  The array will be empty if there are no
+     *          filesystem roots.
+     *
+     * @see java.nio.file.FileStore
+     */
+	public Collection<File> listFiles(); 
 	public Collection<File> listFiles(FileFilter filter);
 	public Collection<File> listFiles(FilenameFilter filter);
 	
@@ -717,11 +810,7 @@ public interface File extends ExternalClass{
      * might not succeed if a file with the destination abstract pathname
      * already exists.  The return value should always be checked to make sure
      * that the rename operation was successful.
-     *
-     * <p> Note that the {@link java.nio.file.Files} class defines the {@link
-     * java.nio.file.Files#move move} method to move or rename a file in a
-     * platform independent manner.
-     *
+          
      * @param  dest  The new abstract pathname for the named file
      *
      * @return  <code>true</code> if and only if the renaming succeeded;
@@ -763,8 +852,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
-     *
-     * @since 1.6
      */
 	public boolean setExecutable(boolean executable);
 
@@ -773,11 +860,6 @@ public interface File extends ExternalClass{
      * pathname. On some platforms it may be possible to start the Java virtual
      * machine with special privileges that allow it to execute files that are
      * not marked executable.
-     *
-     * <p> The {@link java.nio.file.Files} class defines methods that operate on
-     * file attributes including file permissions. This may be used when finer
-     * manipulation of file permissions is required.
-     *
      * @param   executable
      *          If <code>true</code>, sets the access permission to allow execute
      *          operations; if <code>false</code> to disallow execute operations
@@ -800,8 +882,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
-     *
-     * @since 1.6
      */
 	public boolean setExecutable(boolean executable, boolean ownerOnly);
 	  /**
@@ -827,8 +907,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the named file
-     *
-     * @since 1.2
      */
 	public boolean setLastModified(long time);
     /**
@@ -858,8 +936,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
-     *
-     * @since 1.6
      */
 	public boolean setReadable(boolean readable);
 	 /**
@@ -867,11 +943,6 @@ public interface File extends ExternalClass{
      * pathname. On some platforms it may be possible to start the Java virtual
      * machine with special privileges that allow it to read files that are
      * marked as unreadable.
-     *
-     * <p> The {@link java.nio.file.Files} class defines methods that operate on
-     * file attributes including file permissions. This may be used when finer
-     * manipulation of file permissions is required.
-     *
      * @param   readable
      *          If <code>true</code>, sets the access permission to allow read
      *          operations; if <code>false</code> to disallow read operations
@@ -894,8 +965,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
-     *
-     * @since 1.6
      */
 	public boolean setReadable(boolean readable, boolean ownerOnly);
 	/**
@@ -914,8 +983,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the named file
-     *
-     * @since 1.2
      */
 	public boolean setReadOnly();
 
@@ -943,8 +1010,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
-     *
-     * @since 1.6
      */
 	public boolean setWritable(boolean writable);
     /**
@@ -952,11 +1017,6 @@ public interface File extends ExternalClass{
      * pathname. On some platforms it may be possible to start the Java virtual
      * machine with special privileges that allow it to modify files that
      * disallow write operations.
-     *
-     * <p> The {@link java.nio.file.Files} class defines methods that operate on
-     * file attributes including file permissions. This may be used when finer
-     * manipulation of file permissions is required.
-     *
      * @param   writable
      *          If <code>true</code>, sets the access permission to allow write
      *          operations; if <code>false</code> to disallow write operations
@@ -976,8 +1036,6 @@ public interface File extends ExternalClass{
      *          If a security manager exists and its <code>{@link
      *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the named file
-     *
-     * @since 1.6
      */
 	public boolean setWritable(boolean writable, boolean ownerOnly);
 	/**
@@ -1002,11 +1060,9 @@ public interface File extends ExternalClass{
      * @throws  java.nio.file.InvalidPathException
      *          if a {@code Path} object cannot be constructed from the abstract
      *          path (see {@link java.nio.file.FileSystem#getPath FileSystem.getPath})
-     *
-     * @since   1.7
      * @see Path#toFile
      */
-	//	public Path toPath();
+	public Path toPath();
 	 /**
      * Returns the pathname string of this abstract pathname.  This is just the
      * string returned by the <code>{@link #getPath}</code> method.
@@ -1014,6 +1070,5 @@ public interface File extends ExternalClass{
      * @return  The string form of this abstract pathname
      */
 	public String toString();
-//	public URI toURI();
-//	public URL toURL();
+
 }
