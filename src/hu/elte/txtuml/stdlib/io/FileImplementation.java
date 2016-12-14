@@ -1,9 +1,10 @@
-package hu.elte.txtuml.stdlib.io;
+package filePath;
 
 import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Path;
 
 import hu.elte.txtuml.api.model.Collection;
 
@@ -119,7 +120,6 @@ public class FileImplementation implements File {
 		return new FileImplementation(file.getParentFile());
 	}
 
-	@Override
 	public File getPath() {
 		return new FileImplementation(file.getPath());
 	}
@@ -260,23 +260,21 @@ public class FileImplementation implements File {
 		return file.setWritable(writable, ownerOnly);
 	}
 
-//	@Override
-//	public Path toPath() {
-//		return file.toPath();
-//	}
+	@Override
+	public Path toPath() {
+		return file.toPath();
+	}
 	
 	@Override
 	public String toString() {
 		return file.toString();
 	}
 
-//	@Override
-//	public URI toURI() {
-//		return file.toURI();
-//	}
+@Override
+public File getPath(String string) {
+	
+	return null;
+}
 
-//	@Override
-//	public URL toURL() {
-//		return file.toURL();
-//	}
+
 }
