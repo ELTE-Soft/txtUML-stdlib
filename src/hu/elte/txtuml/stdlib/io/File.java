@@ -1,4 +1,4 @@
-package filePath;
+package hu.elte.txtuml.stdlib.io;
 
 import java.io.FileFilter;
 import java.io.FilenameFilter;
