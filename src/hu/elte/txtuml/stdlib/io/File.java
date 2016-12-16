@@ -481,7 +481,7 @@ public interface File extends ExternalClass{
      *
      * @return  The string form of this abstract pathname
      */
-	public File getPath(String string);
+	public String getPath();
 	/**
      * Returns the size of the partition <a href="#partName">named</a> by this
      * abstract pathname.
