@@ -674,7 +674,7 @@ public interface File extends ExternalClass{
      * This may use less resources when working with very large directories, and
      * may be more responsive when working with remote directories.
      *
-     * @return  An array of strings naming the files and directories in the
+     * @return  An Collection<String> of strings naming the files and directories in the
      *          directory denoted by this abstract pathname.  The array will be
      *          empty if the directory is empty.  Returns {@code null} if
      *          this abstract pathname does not denote a directory, or if an
