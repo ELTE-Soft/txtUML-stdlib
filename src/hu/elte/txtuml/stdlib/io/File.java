@@ -759,8 +759,6 @@ public interface File extends ExternalClass{
      * @see java.nio.file.FileStore
      */
 	public Collection<File> listFiles(); 
-	public Collection<File> listFiles(FileFilter filter);
-	public Collection<File> listFiles(FilenameFilter filter);
 	
 	public static Collection<File> listRoots() {
 		java.io.File[] arr = java.io.File.listRoots();
