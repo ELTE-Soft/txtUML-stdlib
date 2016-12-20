@@ -300,7 +300,7 @@ public interface File extends ExternalClass{
      * @return  <code>true</code> if and only if the objects are the same;
      *          <code>false</code> otherwise
      */
-	public boolean equals(Object File);
+	public boolean equals(File obj);
 	/**
      * Tests whether the file or directory denoted by this abstract pathname
      * exists.
