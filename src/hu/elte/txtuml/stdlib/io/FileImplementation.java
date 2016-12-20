@@ -120,8 +120,10 @@ public class FileImplementation implements File {
 		return new FileImplementation(file.getParentFile());
 	}
 
-	public File getPath() {
-		return new FileImplementation(file.getPath());
+	
+	public String getPath() {
+		return null;
+		
 	}
 
 	@Override
@@ -269,12 +271,5 @@ public class FileImplementation implements File {
 	public String toString() {
 		return file.toString();
 	}
-
-@Override
-public File getPath(String string) {
-	
-	return null;
-}
-
 
 }
