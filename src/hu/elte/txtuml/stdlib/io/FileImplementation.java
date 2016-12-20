@@ -74,6 +74,10 @@ public class FileImplementation implements File {
 	public void deleteOnExit() {
 		file.deleteOnExit();
 	}
+	@Override
+	public boolean equals(Object File) {
+		return file.equals(File);
+	}
 
 	@Override
 	public boolean exists() {
