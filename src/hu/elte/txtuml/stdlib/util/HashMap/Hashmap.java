@@ -2,7 +2,6 @@ package hu.elte.txtuml.stdlib.util.HashMap;
 import java.util.HashMap;
 import hu.elte.txtuml.api.model.Collection;
 import hu.elte.txtuml.api.model.external.ExternalClass;
-
 /**
  * HashMap to txtuml is a extension of the class java.util.HashMap. 
  * But specifically was create to use with < String,String >.
