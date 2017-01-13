@@ -8,7 +8,6 @@ public class  EntryImplementation implements Entry
 {
 	 String key;
 	 String value;
-	// Entry<String, String> map= (Entry<String, String>) new HashMap<String, String>();
 
 	public EntryImplementation(String key, String value) 
 	{
