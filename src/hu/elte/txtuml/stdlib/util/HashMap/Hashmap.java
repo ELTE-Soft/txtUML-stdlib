@@ -1,6 +1,4 @@
 package hu.elte.txtuml.stdlib.util.HashMap;
-
-//import java.util.Collection;
 import java.util.HashMap;
 
 import hu.elte.txtuml.api.model.Collection;
