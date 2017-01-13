@@ -7,8 +7,7 @@ import hu.elte.txtuml.api.model.external.ExternalClass;
  * Returns a collection-view of the map, whose elements are of this class.
  * 
  * */
-public interface Entry extends ExternalClass
-{
+public interface Entry extends ExternalClass{
 	/**
 	 Compares the specified object with this entry for equality.
 	 */
@@ -24,8 +23,5 @@ public interface Entry extends ExternalClass
 	/**
 	 Replaces the value corresponding to this entry with the specified value (optional operation).
 	 */
- 	public String setValue(String v);
- 	
- 	
-
+	public String setValue(String v);
 }
