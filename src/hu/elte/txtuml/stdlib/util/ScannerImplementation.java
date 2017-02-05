@@ -1,19 +1,13 @@
 package hu.elte.txtuml.stdlib.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class ScannerImplementation implements Scanner{
 	java.util.Scanner sc;
 	
 	@Override
-	public void scanner(File file) {
-		try {
-			sc = new Scanner(file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	public void Scanner(String source) {
+			sc = new Scanner(source);
 	}
 
 	@Override
@@ -28,7 +22,7 @@ public class ScannerImplementation implements Scanner{
 
 	@Override
 	public boolean hasNextInt(int radix) {
-		return sc.hasNextInt();
+		return sc.hasNextInt(radix);
 	}
 
 	@Override
