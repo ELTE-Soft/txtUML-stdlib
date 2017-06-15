@@ -1,39 +1,27 @@
 package hu.elte.txtuml.stdlib.lang;
 
-import hu.elte.txtuml.api.model.external.ExternalClass;
+import hu.elte.txtuml.api.model.External;
+import hu.elte.txtuml.api.model.ExternalBody;
+import hu.elte.txtuml.api.model.ModelClass;
 
-/**
- * This interface provide an interface so that StringBuilder can be used while
- * using TXTUML java.lang.StringBuilder class provides an API compatible with
- * StringBuffer, but with no guarantee of synchronization.
- * <p>
- * The principal operations on a StringBuilder are the append and insert
- * methods, which are overloaded so as to accept data of any type. Each
- * effectively converts a given datum to a string and then appends or inserts
- * the characters of that string to the string builder. The append method always
- * adds these characters at the end of the builder; the insert method adds the
- * characters at a specified point.
- * <p>
- * instances of StringBuilder are not safe for use by multiple threads. If such
- * synchronization is required then it is recommended that StringBuffer be used.
- * 
- * @author Sally Halal
- *
- */
-public interface StringBuilder extends ExternalClass {
 
-	/**
-	 * Appends the string representation of the int argument.
-	 * <p>
-	 * The overall effect is exactly as if the argument were converted to a
-	 * string by the method String.valueOf(int i), and the characters of that
-	 * string were then appended to this character sequence.
-	 * 
-	 * @param i
-	 *            an int Object.
-	 * @return a reference to this object.
-	 */
-	public StringBuilder append(int i);
+public class StringBuilder extends ModelClass {
+
+	
+@External
+java.lang.StringBuilder sb;
+
+@ExternalBody
+public StringBuilder() {
+sb  = new java.lang.StringBuilder();
+}
+
+
+@ExternalBody
+	public StringBuilder append(int i){
+	 sb.append(i);
+	 return this;
+}
 
 	/**
 	 * Appends the String to the string builder.
@@ -43,7 +31,12 @@ public interface StringBuilder extends ExternalClass {
 	 *            an String Object.
 	 * @return a reference to this object.
 	 */
-	public StringBuilder append(String s);
+@ExternalBody
+	public StringBuilder append(String s){
+		sb.append(s);
+		return this;
+	}
+
 
 	/**
 	 * Appends the string representation of the boolean argument to the
@@ -53,7 +46,12 @@ public interface StringBuilder extends ExternalClass {
 	 *            a boolean object
 	 * @return a reference to this object.
 	 */
-	public StringBuilder append(boolean b);
+@ExternalBody
+	public StringBuilder append(boolean b){
+		sb.append(b);
+		return this;
+
+	}
 
 	/**
 	 * Removes the characters in a substring of this sequence.The substring
@@ -70,8 +68,11 @@ public interface StringBuilder extends ExternalClass {
 	 *             if start is negative, greater than length(), or greater than
 	 *             end.
 	 */
-	public StringBuilder deleteFromTo(int start, int end);
-
+@ExternalBody
+	public StringBuilder deleteFromTo(int start, int end){
+		sb.delete(start, end);
+		return this;
+	}
 	/**
 	 * Removes the char at the specified position in this sequence. This
 	 * sequence is shortened by one char.
@@ -83,7 +84,12 @@ public interface StringBuilder extends ExternalClass {
 	 *             if the index is negative or greater than or equal to
 	 *             length().
 	 */
-	public StringBuilder deleteCharAt(int index);
+@ExternalBody
+	public StringBuilder deleteCharAt(int index){
+		sb.deleteCharAt(index);
+		return this;
+		
+	}
 
 	/**
 	 * Inserts the string representation of the second int argument into this
@@ -95,7 +101,11 @@ public interface StringBuilder extends ExternalClass {
 	 *            int Object
 	 * @return
 	 */
-	public StringBuilder insert(int offset, int i);
+@ExternalBody
+	public StringBuilder insert(int offset, int i){
+		sb.insert(offset, i);
+		return this;
+	}
 
 	/**
 	 * Inserts the string representation of the boolean argument into this
@@ -107,7 +117,11 @@ public interface StringBuilder extends ExternalClass {
 	 *            boolean Object
 	 * @return This object
 	 */
-	public StringBuilder insert(int offset, boolean b);
+@ExternalBody
+	public StringBuilder insert(int offset, boolean b){
+		sb.insert(offset, b);
+		return this;
+	}
 
 	/**
 	 * Inserts the string into this character sequence.
@@ -118,7 +132,11 @@ public interface StringBuilder extends ExternalClass {
 	 *            String Object
 	 * @return This object
 	 */
-	public StringBuilder insert(int offset, String s);
+@ExternalBody
+	public StringBuilder insert(int offset, String s){
+		sb.insert(offset, s);
+		return this;
+	}
 
 	/**
 	 * Causes this character sequence to be replaced by the reverse of the
@@ -128,7 +146,11 @@ public interface StringBuilder extends ExternalClass {
 	 * 
 	 * @return a reference to this object.
 	 */
-	public StringBuilder reverse();
+@ExternalBody
+	public StringBuilder reverse(){
+		sb.reverse();
+		return this;
+	}
 
 	/**
 	 * Replaces the characters in a substring of this sequence with characters
@@ -145,7 +167,11 @@ public interface StringBuilder extends ExternalClass {
 	 *             if start is negative, greater than length(), or greater than
 	 *             end.
 	 */
-	public StringBuilder replace(int start, int end, String str);
+@ExternalBody
+	public StringBuilder replace(int start, int end, String str){
+		sb.replace(start, end, str);
+		return this;
+	}
 
 	/**
 	 * Appends the string representation of the codePoint argument to this
@@ -158,8 +184,12 @@ public interface StringBuilder extends ExternalClass {
 	 *            a Unicode code point
 	 * @return a reference to this object.
 	 */
-	public StringBuilder appendCodePoint(int codePoint);
 
+@ExternalBody
+	public StringBuilder appendCodePoint(int codePoint){
+		sb.appendCodePoint(codePoint);
+		return this;
+	}
 	/**
 	 * Sets the length of the character sequence. The sequence is changed to a
 	 * new character sequence whose length is specified by the argument.
@@ -169,14 +199,22 @@ public interface StringBuilder extends ExternalClass {
 	 * @throws IndexOutOfBoundsException
 	 *             if the newLength argument is negative.
 	 */
-	public void setLength(int newLength);
+
+@ExternalBody
+	public void setLength(int newLength){
+		sb.setLength(newLength);
+	}
 
 	/**
 	 * Attempts to reduce storage used for the character sequence. If the buffer
 	 * is larger than necessary to hold its current sequence of characters, then
 	 * it may be resized to become more space efficient.
 	 */
-	public void trimToSize();
+
+@ExternalBody
+	public void trimToSize(){
+		sb.trimToSize();
+	}
 
 	/**
 	 * Ensures that the capacity is at least equal to the specified minimum.
@@ -184,7 +222,11 @@ public interface StringBuilder extends ExternalClass {
 	 * @param minimumCapacity
 	 *            the minimum desired capacity.
 	 */
-	public void ensureCapacity(int minimumCapacity);
+
+@ExternalBody
+	public void ensureCapacity(int minimumCapacity){
+		 sb.ensureCapacity(minimumCapacity);
+	}
 
 	/**
 	 * Returns a string representing the data in this sequence. A new String
@@ -195,7 +237,11 @@ public interface StringBuilder extends ExternalClass {
 	 * 
 	 * @return a string representation of this sequence of characters.
 	 */
-	public String toString();
+
+@ExternalBody
+	public String toString(){
+		return sb.toString();
+	}
 
 	/**
 	 * eturns a new String that contains a subsequence of characters currently
@@ -211,7 +257,11 @@ public interface StringBuilder extends ExternalClass {
 	 *             if start or end are negative or greater than length(), or
 	 *             start is greater than end.
 	 */
-	public String substring(int start, int end);
+
+@ExternalBody
+	public String substring(int start, int end){
+		return sb.substring(start,  end);
+	}
 
 	/**
 	 * Returns a new String that contains a subsequence of characters currently
@@ -225,7 +275,11 @@ public interface StringBuilder extends ExternalClass {
 	 *             if start is less than zero, or greater than the length of
 	 *             this object.
 	 */
-	public String substring(int start);
+
+@ExternalBody
+	public String substring(int start){
+		return sb.substring(start);
+	}
 
 	/**
 	 * Returns the index within this sequence that is offset from the given
@@ -245,7 +299,11 @@ public interface StringBuilder extends ExternalClass {
 	 *             negative and the subsequence before index has fewer than the
 	 *             absolute value of codePointOffset code points.
 	 */
-	public int offsetByCodePoints(int index, int codePointOffset);
+
+@ExternalBody
+	public int offsetByCodePoints(int index, int codePointOffset){
+		return sb.offsetByCodePoints(index, codePointOffset);
+	}
 
 	/**
 	 * Returns the length (character count).
@@ -253,7 +311,11 @@ public interface StringBuilder extends ExternalClass {
 	 * @return the length of the sequence of characters currently represented by
 	 *         this object
 	 */
-	public int length();
+
+@ExternalBody
+	public int length(){
+		return sb.length();
+	}
 
 	/**
 	 * Returns the index within this string of the last occurrence of the
@@ -268,7 +330,11 @@ public interface StringBuilder extends ExternalClass {
 	 * @throws NullPointerException
 	 *             if str is null.
 	 */
-	public int lastIndexOf(String str, int fromIndex);
+
+@ExternalBody
+	public int lastIndexOf(String str, int fromIndex){
+		return sb.lastIndexOf(str, fromIndex);
+	}
 
 	/**
 	 * Returns the index within this string of the rightmost occurrence of the
@@ -283,7 +349,11 @@ public interface StringBuilder extends ExternalClass {
 	 * @throws NullPointerException
 	 *             if str is null.
 	 */
-	public int lastIndexOf(String str);
+
+@ExternalBody
+	public int lastIndexOf(String str){
+		return sb.lastIndexOf(str);
+	}
 
 	/**
 	 * Returns the index within this string of the first occurrence of the
@@ -298,7 +368,11 @@ public interface StringBuilder extends ExternalClass {
 	 * @throws NullPointerException
 	 *             if str is null.
 	 */
-	public int indexOf(String str, int fromIndex);
+
+@ExternalBody
+	public int indexOf(String str, int fromIndex){
+		return sb.indexOf(str, fromIndex);
+	}
 
 	/**
 	 * Returns the index within this string of the first occurrence of the
@@ -312,7 +386,11 @@ public interface StringBuilder extends ExternalClass {
 	 * @throws NullPointerException
 	 *             if str is null.
 	 */
-	public int indexOf(String str);
+
+@ExternalBody
+	public int indexOf(String str){
+		return sb.indexOf(str);
+	}
 
 	/**
 	 * Returns the number of Unicode code points in the specified text range of
@@ -324,7 +402,10 @@ public interface StringBuilder extends ExternalClass {
 	 *            the index after the last char of the text range.
 	 * @return the number of Unicode code points in the specified text range
 	 */
-	public int codePointCount(int beginIndex, int endIndex);
+@ExternalBody
+	public int codePointCount(int beginIndex, int endIndex){
+		return sb.codePointCount(beginIndex, endIndex);
+	}
 
 	/**
 	 * Returns the character (Unicode code point) before the specified index.
@@ -335,7 +416,11 @@ public interface StringBuilder extends ExternalClass {
 	 *            the index following the code point that should be returned
 	 * @return the Unicode code point value before the given index.
 	 */
-	public int codePointBefore(int index);
+
+@ExternalBody
+	public int codePointBefore(int index){
+		return sb.codePointBefore(index);
+	}
 
 	/**
 	 * Returns the character (Unicode code point) at the specified index. The
@@ -346,7 +431,11 @@ public interface StringBuilder extends ExternalClass {
 	 *            the index to the char values
 	 * @return the code point value of the character at the index
 	 */
-	public int codePointAt(int index);
+
+@ExternalBody
+	public int codePointAt(int index){
+		return sb.codePointAt(index);
+	}
 
 	/**
 	 * Returns the current capacity. The capacity is the amount of storage
@@ -355,6 +444,10 @@ public interface StringBuilder extends ExternalClass {
 	 * 
 	 * @return the current capacity
 	 */
-	public int capacity();
 
+@ExternalBody
+public int capacity(){
+	return sb.capacity();
+}
+	
 }
