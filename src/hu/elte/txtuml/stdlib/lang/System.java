@@ -1,6 +1,7 @@
 package hu.elte.txtuml.stdlib.lang;
 
-import hu.elte.txtuml.api.model.external.ExternalClass;
+import hu.elte.txtuml.api.model.ExternalBody;
+import hu.elte.txtuml.api.model.ModelClass;
 
 /**
  * The Interface System contains several useful methods from the original System
@@ -8,8 +9,9 @@ import hu.elte.txtuml.api.model.external.ExternalClass;
  * @see System 
  * 
  */
-public interface System extends ExternalClass {
 
+public class System extends ModelClass {
+	
 	/**
 	 * Removes the system property indicated by the specified key.
 	 * 
@@ -18,7 +20,11 @@ public interface System extends ExternalClass {
 	 * @return the previous string value of the system property, or null if
 	 *         there was no property with that key.
 	 */
-	public String clearProperty(String key);
+	
+	@ExternalBody
+	public String clearProperty(String key) {
+		return java.lang.System.clearProperty(key);
+	}
 
 	/**
 	 * Returns the current time in milliseconds
@@ -26,7 +32,11 @@ public interface System extends ExternalClass {
 	 * @return the difference, measured in milliseconds, between the current
 	 *         time and midnight, January 1, 1970 UTC.
 	 */
-	public String currentTimeMillis();
+	
+	@ExternalBody
+	public String currentTimeMillis() {
+		return String.valueOf(java.lang.System.currentTimeMillis());
+	}
 
 	/**
 	 * Terminates the currently running Java Virtual Machine. The argument
@@ -39,7 +49,10 @@ public interface System extends ExternalClass {
 	 * @param status
 	 *            exit status
 	 */
-	public void exitVM(int status);
+	@ExternalBody
+	public void exitVM(int status) {
+		java.lang.System.exit(status);
+	}
 
 	/**
 	 * Runs the garbage collector.
@@ -50,7 +63,11 @@ public interface System extends ExternalClass {
 	 * method call, the Java Virtual Machine has made a best effort to reclaim
 	 * space from all discarded objects.
 	 */
-	public void gc();
+	
+	@ExternalBody
+	public void gc() {
+		java.lang.System.gc();
+	}
 
 	/**
 	 * Gets the value of the specified environment variable. An environment
@@ -61,7 +78,11 @@ public interface System extends ExternalClass {
 	 * @return the string value of the variable, or null if the variable is not
 	 *         defined in the system environment
 	 */
-	public String getenv(String name);
+	
+	@ExternalBody
+	public String getenv(String name) {
+		return java.lang.System.getenv(name);
+	}
 
 	/**
 	 * Gets the system property indicated by the specified key.
@@ -71,7 +92,10 @@ public interface System extends ExternalClass {
 	 * @return the string value of the system property, or null if there is no
 	 *         property with that key.
 	 */
-	public String getProperty(String key);
+	@ExternalBody
+	public String getProperty(String key) {
+		return java.lang.System.getProperty(key);
+	}
 
 	/**
 	 * Gets the system property indicated by the specified key.
@@ -83,7 +107,11 @@ public interface System extends ExternalClass {
 	 * @return the string value of the system property, or the default value if
 	 *         there is no property with that key.
 	 */
-	public String getProperty(String key, String def);
+	
+	@ExternalBody
+	public String getProperty(String key, String def) {
+		return java.lang.System.getProperty(key, def);
+	}
 
 	/**
 	 * Returns the system-dependent line separator string. It always returns the
@@ -94,7 +122,11 @@ public interface System extends ExternalClass {
 	 * 
 	 * @return the system-dependent line separator string
 	 */
-	public String lineSeparator();
+	
+	@ExternalBody
+	public String lineSeparator() {
+		return java.lang.System.lineSeparator();
+	}
 
 	/**
 	 * Loads the native library specified by the filename argument. The filename
@@ -111,7 +143,11 @@ public interface System extends ExternalClass {
 	 * @param filename
 	 *            the file to load.
 	 */
-	public void load(String filename);
+	
+	@ExternalBody
+	public void load(String filename) {
+		java.lang.System.load(filename);
+	}
 
 	/**
 	 * Loads the native library specified by the libname argument. The libname
@@ -125,7 +161,11 @@ public interface System extends ExternalClass {
 	 * @param libname
 	 *            the name of the library
 	 */
-	public void loadLibrary(String libname);
+	
+	@ExternalBody
+	public void loadLibrary(String libname) {
+		java.lang.System.loadLibrary(libname);
+	}
 
 	/**
 	 * Maps a library name into a platform-specific string representing a native
@@ -135,7 +175,11 @@ public interface System extends ExternalClass {
 	 *            the name of the library.
 	 * @return a platform-dependent native library name.
 	 */
-	public String mapLibraryName(String libname);
+	
+	@ExternalBody
+	public String mapLibraryName(String libname) {
+		return java.lang.System.mapLibraryName(libname);
+	}
 
 	/**
 	 * Returns the current value of the running Java Virtual Machine's
@@ -175,8 +219,12 @@ public interface System extends ExternalClass {
 	 * @return the current value of the running Java Virtual Machine's
 	 *         high-resolution time source, in nanoseconds
 	 */
-	public String nanoTime();
-
+	
+	@ExternalBody
+	public String nanoTime() {
+		return String.valueOf(java.lang.System.nanoTime());
+	}
+	
 	/**
 	 * Runs the finalization methods of any objects pending finalization.
 	 * <p>
@@ -186,7 +234,11 @@ public interface System extends ExternalClass {
 	 * returns from the method call, the Java Virtual Machine has made a best
 	 * effort to complete all outstanding finalizations.
 	 */
-	public void runFinalization();
+
+	@ExternalBody
+	public void runFinalization() {
+		java.lang.System.runFinalization();
+	}
 
 	/**
 	 * Sets the system property indicated by the specified key.
@@ -198,6 +250,9 @@ public interface System extends ExternalClass {
 	 * @return the previous value of the system property, or null if it did not
 	 *         have one.
 	 */
-	public String setProperty(String key, String value);
+	@ExternalBody
+	public String setProperty(String key, String value) {
+		return java.lang.System.setProperty(key, value);
+	}
 
 }
